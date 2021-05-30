@@ -1,0 +1,17 @@
+-dontwarn com.squareup.leakcanary.**
+-dontwarn retrofit2.**
+-dontwarn net.sqlcipher.**
+-keep class net.sqlcipher** { *; }
+-keep class net.sqlcipher.database** { *; }
+-keep class kotlin.KotlinNullPointerException { *; }
+-keep interface com.squareup.leakcanary** { *; }
+-keep class com.squareup.leakcanary** { *; }
+-keep class retrofit2** {*;}
+-keep class com.google.gson** {*;}
+-keep public class com.google.gson** {public private protected *;}
+-keep class com.google.inject** { *; }
+-keepattributes *Annotation*
+-keepattributes Signature
+-dontwarn com.squareup.okhttp.*
+-dontwarn rx.**
+-dontwarn javax.xml.stream.**
