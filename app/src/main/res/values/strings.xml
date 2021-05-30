@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">capstoneproject</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_movie">Movies</string>
+    <string name="home_menu">Home</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="errormassage">looks like something is wrong</string>
+    <string name="menu_favoriteMovie">Favorite Movie</string>
+    <string name="data_kosong">There Nothing</string>
+    <string name="image_description">description</string>
+    <string name="text_subtitle">subtitle</string>
+</resources>
