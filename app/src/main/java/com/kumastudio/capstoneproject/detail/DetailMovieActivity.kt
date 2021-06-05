@@ -37,7 +37,6 @@ class DetailMovieActivity : AppCompatActivity() {
             Glide.with(this@DetailMovieActivity)
                 .load(MovieDesc.image)
                 .into(binding.ivDetailImage)
-
             var statusFavorite = MovieDesc.isFavorite
             setStatusFavorite(statusFavorite)
             binding.fab.setOnClickListener {

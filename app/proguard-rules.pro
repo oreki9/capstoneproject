@@ -19,6 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Untuk mempertahankan suatu Class supaya tidak di-obfuscate
 -dontwarn com.squareup.leakcanary.**
 -dontwarn com.google.gson.**
 -keep class net.sqlcipher** { *; }
@@ -27,3 +28,18 @@
 -keep interface com.squareup.leakcanary** { *; }
 -keep class com.squareup.leakcanary** { *; }
 -keep class retrofit2** {*;}
+-keep class kotlin** { *; }
+-keep class kotlinx** { *; }
+-keep class kotlin.Metadata { *; }
+-keepclassmembers class com.kumastudio.capstoneproject** { *; }
+-keep class androidx.appcompat.app.AppCompatActivity** { *; }
+-dontwarn kotlin.**
+-keepclassmembers class **$WhenMappings {
+    <fields>;
+}
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}
+-assumenosideeffects class kotlin.jvm.internal.Intrinsics {
+    static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
+}

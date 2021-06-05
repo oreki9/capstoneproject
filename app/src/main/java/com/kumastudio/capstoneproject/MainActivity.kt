@@ -1,6 +1,8 @@
 package com.kumastudio.capstoneproject
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -55,8 +57,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 title = getString(R.string.app_name)
             }
             R.id.nav_favorite -> {
-                fragment = FavoriteFragment()
-                title = getString(R.string.menu_favoriteMovie)
+                //val uri = Uri.parse("capstoneproject://movie")
+                //startActivity(Intent(Intent.ACTION_VIEW, uri))
+                startActivity(Intent(this, Class.forName("com.kumastudio.capstoneproject.movie.MovieActivity")))
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                return false
             }
         }
         if (fragment != null) {

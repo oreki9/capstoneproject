@@ -1,23 +1,29 @@
 package com.kumastudio.capstoneproject.movie
 
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import com.kumastudio.capstoneproject.R
 import com.kumastudio.capstoneproject.core.data.Resource
 import com.kumastudio.capstoneproject.di.MovieModuleDependencies
+import com.kumastudio.capstoneproject.home.HomeFragment
 import com.kumastudio.capstoneproject.movie.databinding.ActivityMoviesBinding
+import com.kumastudio.capstoneproject.movie.favorite.MovieFragmentFavorite
+
 import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
-
+@Keep
 class MovieActivity : AppCompatActivity() {
-
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val movieViewModel: MovieViewModel by viewModels {
+    private val movieViewModel: MovieViewModel by viewModels{
         factory
     }
 
@@ -39,27 +45,29 @@ class MovieActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Movie Data"
-
-        getMovieData()
+        getFavorite()
     }
-
-    private fun getMovieData() {
-        movieViewModel.movie.observe(this, { movie ->
-            if (movie != null) {
-                when (movie) {
-                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
-                    is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.tvMaps.text = "This is movies of ${movie.data?.get(0)?.name}"
-                    }
-                    is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.tvError.visibility = View.VISIBLE
-                        binding.tvError.text = movie.message
-                    }
-                }
-            }
-        })
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+    private fun getFavorite(){
+        var fragment: Fragment? = null
+        var title = getString(R.string.app_name)
+        fragment = MovieFragmentFavorite(movieViewModel)
+        title = getString(R.string.app_name)
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction()
+                .replace(getResources().getIdentifier("nav_host_fragment_movie", "id", "com.kumastudio.capstoneproject.movie"), fragment)
+                .commit()
+        }
+        val toolbar = findViewById<Toolbar>(getResources().getIdentifier("toolbarMovie", "id", "com.kumastudio.capstoneproject.movie"))
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            title = title
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
     }
     override fun onBackPressed() {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q &&

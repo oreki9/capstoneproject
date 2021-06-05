@@ -12,12 +12,13 @@
         <dist:fusing dist:include="true" />
     </dist:module>
     <application android:allowBackup="false">
-        <activity android:name=".MovieActivity">
+        <activity android:name=".MovieActivity"
+            android:theme="@style/Theme.Capstoneproject.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:scheme="tourismapp"
+                    android:scheme="capstoneproject"
                     android:host="movie" />
             </intent-filter>
         </activity>

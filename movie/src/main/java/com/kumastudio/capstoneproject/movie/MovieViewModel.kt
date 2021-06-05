@@ -5,5 +5,5 @@ import androidx.lifecycle.asLiveData
 import com.kumastudio.capstoneproject.core.domain.usecase.MovieDataUseCase
 
 class MovieViewModel(movieUseCase: MovieDataUseCase) : ViewModel() {
-    val movie = movieUseCase.getAllMovie().asLiveData()
+    val movie = movieUseCase.getFavoriteMovie().asLiveData()
 }
